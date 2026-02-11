@@ -1,0 +1,801 @@
+/* 
+ * YESFIRE MOVIMENT - STREET STYLE
+ * Colors: Orange #ff4937 | Blue #4d8ca6 | White #fff | Black #000
+ */
+
+:root {
+    --orange: #ff4937;
+    --blue: #4d8ca6;
+    --white: #ffffff;
+    --black: #111111;
+    --gray: #222222;
+    --font-street: 'Permanents Marker', cursive;
+    /* Fallback if font fails */
+    --font-heading: 'Bebas Neue', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+    --font-hand: 'Rock Salt', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* --- TEXTURE OVERLAY --- */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* --- TYPOGRAPHY --- */
+h1,
+h2,
+h3 {
+    text-transform: uppercase;
+}
+
+.stencil {
+    font-family: 'Bebas Neue';
+    letter-spacing: 2px;
+    border: 2px solid var(--white);
+    padding: 5px 15px;
+    display: inline-block;
+    transform: rotate(-2deg);
+}
+
+.marker-font {
+    font-family: 'Permanent Marker', cursive;
+}
+
+.orange-text {
+    color: var(--orange);
+}
+
+.blue-text {
+    color: var(--blue);
+}
+
+/* --- HEADER --- */
+#main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(17, 17, 17, 0.95);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid #333;
+    padding: 15px 0;
+    transition: all 0.3s ease;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Bebas Neue';
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+.logo .highlight {
+    color: var(--orange);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--orange);
+    text-shadow: 0 0 10px rgba(255, 73, 55, 0.5);
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #222 0%, #000 100%);
+    z-index: -1;
+}
+
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(45deg, transparent 48%, #333 49%, #333 51%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, #333 49%, #333 51%, transparent 52%);
+    background-size: 60px 60px;
+    opacity: 0.1;
+}
+
+.hero-content h1 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(3rem, 10vw, 8rem);
+    line-height: 0.9;
+    margin-bottom: 20px;
+    text-shadow: 4px 4px 0px var(--orange);
+    transform: rotate(-3deg);
+}
+
+.hero-content .subtitle {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: 30px;
+}
+
+.hero-tagline {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #888;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    font-size: 2rem;
+    color: var(--blue);
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* --- MANIFESTO SECTION --- */
+.manifesto-section {
+    padding: 100px 0;
+    background: var(--black);
+    border-bottom: 1px solid #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- MANIFESTO SECTION (Onda Dura Style) --- */
+.manifesto-section {
+    position: relative;
+    padding: 150px 0;
+    /* Image: Person tying shoes / Walking theme */
+    background-image: url('https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center bottom;
+    background-attachment: fixed;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+}
+
+.manifesto-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    /* Dark overlay */
+    z-index: 1;
+}
+
+.manifesto-content {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    /* Aligned left like the reference */
+    width: 100%;
+}
+
+.big-impact-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 30px;
+    text-transform: none;
+    /* Reference uses normal case/sentence case structure, but let's keep it powerful */
+}
+
+.big-impact-text .highlight-bg {
+    color: var(--orange);
+    font-family: 'Permanent Marker', cursive;
+    /* Keeping the street touch */
+}
+
+.manifesto-subtext {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.pill {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--white);
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.pill:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+    transform: translateY(-5px);
+}
+
+/* --- PILLARS SECTION --- */
+/* Restoring Shared .section-title styles */
+.section-title {
+    font-family: 'Bebas Neue';
+    font-size: clamp(3rem, 6vw, 5rem);
+    text-align: center;
+    margin-bottom: 60px;
+    /* Crucial spacing to prevent overlap */
+    letter-spacing: 2px;
+}
+
+.pillars-section {
+    padding: 100px 0;
+    background-color: #0a0a0a;
+    background-image: radial-gradient(#222 10%, transparent 10%);
+    background-size: 20px 20px;
+}
+
+.pillars-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.pillar-card {
+    background: var(--black);
+    border: 2px solid var(--white);
+    padding: 30px;
+    width: 200px;
+    text-align: center;
+    position: relative;
+    box-shadow: 10px 10px 0px var(--orange);
+    transition: all 0.3s;
+}
+
+.pillar-card:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: 15px 15px 0px var(--orange);
+}
+
+.pillar-number {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    background: var(--blue);
+    color: var(--black);
+    font-family: 'Bebas Neue';
+    font-size: 1.5rem;
+    padding: 5px 10px;
+    border: 2px solid var(--white);
+}
+
+.pillar-card h3 {
+    font-family: 'Bebas Neue';
+    font-size: 2rem;
+    margin: 15px 0 5px;
+    letter-spacing: 1px;
+}
+
+.pillar-card p {
+    font-size: 0.9rem;
+    color: #aaa;
+    font-style: italic;
+}
+
+/* --- THE WAY SECTION --- */
+.way-section {
+    padding: 120px 0;
+    background: var(--orange);
+    color: var(--black);
+    text-align: center;
+    clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+}
+
+.way-content h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 30px;
+    transform: rotate(-2deg);
+    display: inline-block;
+    border-bottom: 5px solid var(--black);
+}
+
+.quote-box {
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.quote-box cite {
+    display: block;
+    margin-top: 20px;
+    font-family: 'Bebas Neue';
+    letter-spacing: 2px;
+    font-size: 1.8rem;
+    /* Increased size */
+    color: var(--black);
+}
+
+/* --- VISION SECTION --- */
+.vision-section {
+    padding: 100px 0;
+    text-align: center;
+    background: #000;
+}
+
+.vision-text p {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-family: 'Bebas Neue';
+    letter-spacing: 3px;
+    color: #444;
+    transition: color 0.5s;
+    line-height: 1.2;
+}
+
+.vision-text p:hover {
+    color: var(--white);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.highlight-text {
+    color: var(--blue) !important;
+    font-size: clamp(2rem, 4vw, 3rem) !important;
+    margin-top: 30px;
+}
+
+/* --- INFO SECTION --- */
+.info-section {
+    padding: 80px 0;
+    background: #111;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: center;
+}
+
+.info-box h3 {
+    color: var(--orange);
+    font-family: 'Bebas Neue';
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.info-box p {
+    font-family: 'Montserrat';
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+/* --- FOOTER --- */
+.main-footer {
+    padding: 80px 0 40px;
+    background: var(--black);
+    text-align: center;
+    border-top: 1px solid #333;
+}
+
+.call-to-action {
+    font-family: 'Permanent Marker';
+    font-size: clamp(3rem, 6vw, 6rem);
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.welcome {
+    font-family: 'Rock Salt', cursive;
+    color: var(--blue);
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.btn-social {
+    padding: 15px 30px;
+    border: 2px solid var(--white);
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Bebas Neue';
+    font-size: 1.5rem;
+    transition: all 0.3s;
+}
+
+.btn-social:hover {
+    background: var(--white);
+    color: var(--black);
+}
+
+.btn-text {
+    font-family: 'Montserrat';
+    color: #888;
+    text-decoration: none;
+    padding: 15px 10px;
+    align-self: center;
+}
+
+.btn-text:hover {
+    color: var(--white);
+}
+
+.fire-counter {
+    margin: 20px 0;
+    font-size: 2rem;
+    /* Reduced from 3rem */
+}
+
+.fire-counter .subtitle {
+    font-family: 'Montserrat';
+    font-size: 1rem;
+    /* Smaller subtitle */
+    color: var(--white);
+    margin-top: 10px;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+#fire-icon {
+    animation: flicker 2s infinite;
+    display: block;
+    /* Changed to block to stack properly */
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+        text-shadow: 0 0 10px orange;
+    }
+
+    50% {
+        opacity: 0.7;
+        text-shadow: 0 0 20px red;
+    }
+
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 10px orange;
+    }
+}
+
+.copyright {
+    color: #444;
+    font-size: 0.8rem;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: var(--black);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    .mobile-menu.active {
+        right: 0;
+    }
+
+    .mobile-menu ul {
+        list-style: none;
+        text-align: center;
+    }
+
+    .mobile-menu ul li {
+        margin: 20px 0;
+    }
+
+    .mobile-menu a {
+        color: var(--white);
+        text-decoration: none;
+        font-size: 2rem;
+        font-family: 'Bebas Neue';
+    }
+}
+
+/* --- ANIMATIONS CLASSES --- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 {
+    transition-delay: 0.2s;
+}
+
+.delay-2 {
+    transition-delay: 0.4s;
+}
+
+.delay-3 {
+    transition-delay: 0.6s;
+}
+
+/* --- LEADERS PAGE --- */
+.leaders-hero {
+    padding: 180px 0 100px;
+    /* More padding top for fixed header */
+    text-align: center;
+    background: radial-gradient(circle at center, #222 0%, #000 100%);
+    border-bottom: 1px solid #333;
+}
+
+.leaders-hero h1 {
+    font-family: 'Permanent Marker', cursive;
+    /* Keeping style */
+    font-size: clamp(3rem, 6vw, 6rem);
+    margin-bottom: 30px;
+    text-shadow: 4px 4px 0px var(--orange);
+}
+
+.leaders-hero .quote-box {
+    background: transparent;
+    border: 2px solid var(--orange);
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-style: italic;
+    color: #ccc;
+    transform: rotate(-1deg);
+}
+
+.leaders-section {
+    padding: 100px 0;
+    min-height: 60vh;
+    background: #111;
+}
+
+.leaders-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 Columns Desktop strict */
+    gap: 40px;
+    text-align: center;
+}
+
+.leader-card {
+    background: transparent;
+    padding: 0;
+    border: none;
+    transition: transform 0.3s;
+}
+
+.photo-frame {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    /* Portrait ratio for people */
+    overflow: hidden;
+    margin-bottom: 25px;
+    border: 3px solid var(--white);
+    position: relative;
+    background: #222;
+}
+
+.bw-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: all 0.5s ease;
+}
+
+/* Hover Effects */
+.leader-card:hover .bw-photo {
+    filter: grayscale(0%);
+    /* Remove B&W */
+    transform: scale(1.1);
+}
+
+.leader-card:hover .photo-frame {
+    border-color: var(--orange);
+    box-shadow: 0 0 20px rgba(255, 73, 55, 0.3);
+}
+
+.leader-card h3 {
+    font-family: 'Bebas Neue';
+    font-size: 2rem;
+    color: var(--white);
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.leader-card .role {
+    font-family: 'Montserrat';
+    color: var(--blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* --- CLEAN FOOTER (NO LINES) --- */
+.clean-footer {
+    border-top: none !important;
+    background: var(--black);
+    padding-top: 50px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .leaders-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: var(--black);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    .mobile-menu.active {
+        right: 0;
+    }
+
+    .mobile-menu ul {
+        list-style: none;
+        text-align: center;
+    }
+
+    .mobile-menu ul li {
+        margin: 20px 0;
+    }
+
+    .mobile-menu a {
+        color: var(--white);
+        text-decoration: none;
+        font-size: 2rem;
+        font-family: 'Bebas Neue';
+    }
+
+    /* Leaders Mobile */
+    .leaders-grid {
+        grid-template-columns: 1fr;
+        /* 1 Column Mobile */
+        gap: 60px;
+    }
+}
